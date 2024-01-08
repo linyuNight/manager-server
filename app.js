@@ -10,9 +10,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 跨域
 app.use(cors({
   origin: "*",
-  // methods: ['GET', 'POST', 'PUT', 'DELETE'], // 允许的请求方法
-  // allowedHeaders: ['Content-Type', 'Authorization'], // 允许的请求头
-  // credentials: true // 允许携带认证信息（如 Cookies）
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // 允许的请求方法
+  allowedHeaders: ['Content-Type', 'Authorization'], // 允许的请求头
+  credentials: true // 允许携带认证信息（如 Cookies）
 }));
 
 
