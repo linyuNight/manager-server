@@ -15,9 +15,30 @@ app.use(cors({
   credentials: true // 允许携带认证信息（如 Cookies）
 }));
 
+// 更新项目前端
+app.get('/updateItemWeb', (req, res) => {
+  // console.log('测试99999')
+  try {
+    const scriptPath = path.join(__dirname, './sh/git_pull_item.sh');
+    console.log('测试scriptPath', scriptPath)
+    exec(`sh ${scriptPath}`, (error, stdout, stderr) => {
+      if (error) {
+        // 执行出错时的处理逻辑
+        console.error('执行命令出错:', error);
+        res.status(500).send('执行命令出错');
+        return;
+      }
 
+      // 执行成功时的处理逻辑
+      console.log('命令执行结果:', stdout);
+      res.status(200).send('命令执行成功');
+    });
+  } catch(err) {
+    console.log('测试err', err)
+  }  
+})
 
-// 网络测试接口
+// 更新后台前端
 app.get('/updateWeb', (req, res) => {
   // console.log('测试99999')
   try {
